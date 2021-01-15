@@ -11,6 +11,16 @@ body{
     background-attachment: fixed;
 }
 
+footer{
+    padding-top: 10rem;
+    padding-bottom: 5rem;
+    text-align: center;
+    color: #ebf5dc;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+}
+
 /* classes */
 
 .button{
@@ -43,6 +53,37 @@ body{
     text-align: center;
 }
 
+.song-card{
+    display: flex;
+    justify-content: center;
+}
+
+.element {
+
+    background-color: #ebf5dc;
+    box-shadow: 
+      12px 12px 16px 0 rgba(0, 0, 0, 0.25),
+      -8px -8px 12px 0 rgba(255, 255, 255, 0.3);
+    border-radius: 50px;
+    justify-content:left;
+    margin-top: 6rem;
+    height: 623px;
+    width: 566px;
+  }
+
+  .identity{
+    display: flex;
+    justify-content:space-between;
+    width: 566px;
+    height: 100px;
+  }
+
+.content{
+    margin-top: 1rem;
+    margin-bottom: 0px;
+    text-align: center;
+}
+
 /* ids */
 
 #appName{
@@ -67,4 +108,18 @@ body{
 
 #search{
     margin-left: 2rem;
+}
+
+#song-name{
+    display: flex;
+    justify-content: left;
+    margin-top: 32px;
+    margin-left: 30px;
+}
+
+#artist-name{
+    display: flex;
+    justify-content: right;
+    margin-top: 32px;
+    margin-right: 30px;
 }
