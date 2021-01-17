@@ -26,6 +26,7 @@ app.post("/", function(req, res){
 
     music.trackSearch({q:title, page:1, page_size:3})
 	.then(function(data){
+        console.log(data.message.body.track_list);
         const track_is = data.message.body.track_list[0].track.track_id;
 
             music.trackLyrics({track_id:track_is})
@@ -37,10 +38,16 @@ app.post("/", function(req, res){
                 })
             }).catch(function(err){
                 console.log(err);
+                res.render("index", {
+                    success: false
+                })
         });
 
 	}).catch(function(err){
-		console.log(err);
+        console.log(err);
+        res.render("index", {
+            success: false
+        })
     }); 
 });
 
