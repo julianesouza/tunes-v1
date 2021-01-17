@@ -4,10 +4,7 @@ const bodyParser = require("body-parser");
 const ejs = require("ejs");
 const https = require("https");
 const {config} = require('./config.js'); 
-
 const mykey = config.MY_KEY;
-const url = "https://api.musixmatch.com/ws/1.1/";
-const end_url = "&apikey=" + mykey;
 
 const app = express();
 
@@ -25,14 +22,6 @@ app.get("/", function(req, res){
 app.post("/", function(req, res){
 
     let title = req.body.title;
-    const urlRequest = url + "track.search?format=jsonp&callback=callback&q_track=" + title + end_url;
-
-    https.get(urlRequest, function(response){
-        console.log(response.statusCode);
-        response.on("data", function(data){
-            console.log(JSON.parse(data));
-        });
-    });
 
     res.render("index", {
         success: true
