@@ -9,6 +9,8 @@ const music = require('musicmatch')({apikey:mykey});
 
 const app = express();
 
+let lyrics = "";
+
 app.set('view engine', 'ejs');
 
 app.use(bodyParser.urlencoded({extended: true}));
@@ -31,23 +33,13 @@ app.post("/", function(req, res){
 
             music.trackLyrics({track_id:track_is})
             .then(function(data){
-                const lyrics = data.message.body.lyrics.lyrics_body;
-                res.render("index", {
-                    success: true,
-                    lyrics: lyrics
-                })
+                lyrics = data.message.body.lyrics.lyrics_body;
             }).catch(function(err){
                 console.log(err);
-                res.render("index", {
-                    success: false
-                })
         });
 
 	}).catch(function(err){
         console.log(err);
-        res.render("index", {
-            success: false
-        })
     }); 
 });
 
