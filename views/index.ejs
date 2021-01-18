@@ -52,7 +52,7 @@
         <h3 id="slogan">Search for your favorite song's lyrics</h3>
 
         <form action="/" method="post">
-            <input type="text" class="text-line" name="title">
+            <input type="text" class="text-line" name="title" placeholder="song title - artist">
             <button id="search" class="button">
                <i class="fas fa-search" style="color: white;"></i>
             </button>
@@ -77,11 +77,12 @@
                 </div>
             </div>
             <div class="content">
-                <p><%= lyrics %>></p>
+                <p><%= lyrics %></p>
             </div>
         </div>
     <% } %>
-    </div>
+    
+</div>
 
     <!-- end -->
 

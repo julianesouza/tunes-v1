@@ -21,6 +21,14 @@ footer{
     font-weight: normal;
 }
 
+p{
+    padding: 10%;
+}
+
+::placeholder{
+    color: #ebf5dc;
+}
+
 /* classes */
 
 .button{

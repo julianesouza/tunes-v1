@@ -17,6 +17,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get("/", function(req, res){
+
     res.render("index", {
         success: false
     });
@@ -26,15 +27,13 @@ app.post("/", function(req, res){
 
     let title = req.body.title;
 
-    music.trackSearch({q:title, page:1, page_size:3})
+    music.trackSearch({q:title})
 	.then(function(data){
-        let id = data.message.body.track_list[0].track.track_id;
-        console.log(id);
 
-        music.trackLyrics({track_id: id})
+        music.trackLyrics({track_id: data.message.body.track_list[0].track.track_id})
         .then(function(data){
-            letra = data.message.body.lyrics.lyrics_body
-            console.log(letra);
+            console.log(data.message.body.lyrics.lyrics_body);
+            letra = data.message.body.lyrics.lyrics_body;
         }).catch(function(err){
             console.log(err);
         })
@@ -46,7 +45,7 @@ app.post("/", function(req, res){
     res.render("index", {
         success: true,
         lyrics: letra
-    })
+    });
 });
 
 app.listen(3000, function(){
