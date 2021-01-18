@@ -1,3 +1,4 @@
+ 
 const express = require("express"); 
 const path = require("path");
 const bodyParser = require("body-parser"); 
@@ -5,9 +6,10 @@ const ejs = require("ejs");
 const https = require("https");
 const {config} = require('./config.js'); 
 const mykey = config.MY_KEY;
-const music = require('musicmatch')({apikey:mykey});
 
 const app = express();
+const baseURL = "https://api.musixmatch.com/ws/1.1/";
+const endURL = "&apikey=" + mykey;
 
 let letra = "";
 
@@ -17,7 +19,6 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get("/", function(req, res){
-
     res.render("index", {
         success: false
     });
@@ -25,29 +26,23 @@ app.get("/", function(req, res){
 
 app.post("/", function(req, res){
 
-    let title = req.body.title;
+    https.get("baseURL + "track.search?q_track=mad%20woman&q_artist=taylor%20swift&" + endURL", function(response){
+        console.log(response.statusCode);
 
-    music.trackSearch({q:title})
-	.then(function(data){
+        response.on("data", function(data){
+            const tData = JSON.parse(data);
+            console.log(tData);
+        });
 
-        music.trackLyrics({track_id: data.message.body.track_list[0].track.track_id})
-        .then(function(data){
-            console.log(data.message.body.lyrics.lyrics_body);
-            letra = data.message.body.lyrics.lyrics_body;
-        }).catch(function(err){
-            console.log(err);
-        })
-
-	}).catch(function(err){
-		console.log(err);
-})
+    });
 
     res.render("index", {
         success: true,
         lyrics: letra
-    });
+    })
 });
 
 app.listen(3000, function(){
     console.log("server running on port 3000");
 });
+
