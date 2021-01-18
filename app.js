@@ -9,7 +9,7 @@ const music = require('musicmatch')({apikey:mykey});
 
 const app = express();
 
-let lyrics = "";
+let letra = "";
 
 app.set('view engine', 'ejs');
 
@@ -28,19 +28,25 @@ app.post("/", function(req, res){
 
     music.trackSearch({q:title, page:1, page_size:3})
 	.then(function(data){
-        console.log(data.message.body.track_list);
-        const track_is = data.message.body.track_list[0].track.track_id;
+        let id = data.message.body.track_list[0].track.track_id;
+        console.log(id);
 
-            music.trackLyrics({track_id:track_is})
-            .then(function(data){
-                lyrics = data.message.body.lyrics.lyrics_body;
-            }).catch(function(err){
-                console.log(err);
-        });
+        music.trackLyrics({track_id: id})
+        .then(function(data){
+            letra = data.message.body.lyrics.lyrics_body
+            console.log(letra);
+        }).catch(function(err){
+            console.log(err);
+        })
 
 	}).catch(function(err){
-        console.log(err);
-    }); 
+		console.log(err);
+})
+
+    res.render("index", {
+        success: true,
+        lyrics: letra
+    })
 });
 
 app.listen(3000, function(){
