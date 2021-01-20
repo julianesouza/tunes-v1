@@ -26,12 +26,13 @@ app.get("/", function(req, res){
 
 app.post("/", function(req, res){
 
-    https.get("baseURL + "track.search?q_track=mad%20woman&q_artist=taylor%20swift&" + endURL", function(response){
+    https.get("https://api.musixmatch.com/ws/1.1/track.search?format=jsonp&callback=callback&q_track=red&q_artist=taylor%20swift&apikey=50dd12f56ed7a95a81d0b721f70b19e2", function(response){
         console.log(response.statusCode);
 
         response.on("data", function(data){
-            const tData = JSON.parse(data);
-            console.log(tData);
+            var a = data.toString('utf8');
+            JSON.stringify(a);
+            console.log(a);
         });
 
     });
