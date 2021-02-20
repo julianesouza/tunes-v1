@@ -10,8 +10,6 @@ const app = express();
 const baseURL = "https://api.musixmatch.com/ws/1.1/";
 const endURL = "&apikey=" + mykey;
 
-let letra = "";
-let id = 0;
 
 app.set('view engine', 'ejs');
 
@@ -26,19 +24,31 @@ app.get("/", function(req, res){
 
 app.post("/", function(req, res){
 
+var letra_musica;
+
 axios
-  .get(baseURL + "track.search?callback=callback&q_track=red&q_artist=taylor%20swift&apikey=" + endURL)
+  .get(baseURL + "track.search?callback=callback&q_track=" + req.body.title + "&q_artist=" + req.body.artist + "&apikey=" + endURL)
   .then((response) => {
     console.log(response.data.message.body.track_list[0].track.track_id);
+
+    axios
+  .get(baseURL + "track.lyrics.get?track_id=" + response.data.message.body.track_list[0].track.track_id + "&apikey=" + endURL)
+  .then((response) => {
+    letra_musica = response.data.message.body.lyrics.lyrics_body;
+    res.render("index", {
+      success: true,
+      lyrics: letra_musica
+  });
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+
   })
   .catch((error) => {
     console.log(error);
   });
     
-    res.render("index", {
-        success: true,
-        lyrics: letra
-    })
 });
 
 app.listen(3000, function(){
