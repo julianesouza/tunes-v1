@@ -51,7 +51,7 @@ axios
     
 });
 
-app.listen(3000, function(){
+app.listen(process.env.PORT, function(){
     console.log("server running on port 3000");
 });
 
