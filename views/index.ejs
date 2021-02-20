@@ -17,7 +17,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Gruppo&family=Montserrat&display=swap" rel="stylesheet">
     <!-- Font Awesome CDN-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <!--Musixmatch-->
     <script type="text/javascript" src="http://tracking.musixmatch.com/t1.0/AMa6hJCIEzn1v8RuOP"></script>
+    <!-- Animate CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <!-- Title -->
     <title>tunes - find the music you are looking for</title>
 </head>
@@ -37,7 +40,7 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-                <a class="nav-link px-5" href="">github</a>
+                <a class="nav-link px-5" href="https://github.com/julianesouza" target="_blank">github</a>
             </li>
         </ul>
      </div>
@@ -46,13 +49,13 @@
     <!-- header -->
     <div class="header">
 
-        <h1 id="appName">t u n e s</h1>
-        <h3 id="slogan">Search for your favorite song's lyrics</h3>
+        <h1 id="appName" class="animate__animated animate__fadeInDown">t u n e s</h1>
+        <h3 id="slogan" class="animate__animated animate__slideInLeft" >Search for your favorite song's lyrics</h3>
 
         <form action="/" method="post">
-            <input type="text" class="text-line" name="title" placeholder="song title">
-            <input type="text" class="text-line" name="artist" placeholder="artist">
-            <button id="search" class="button">
+            <input type="text" class="text-line animate__animated animate__fadeIn" name="title" placeholder="song title" >
+            <input type="text" class="text-line animate__animated animate__fadeIn" name="artist" placeholder="artist">
+            <button id="search" class="button animate__animated animate__fadeIn">
                <i class="fas fa-search" style="color: white;"></i>
             </button>
         </form>
