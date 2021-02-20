@@ -37,7 +37,9 @@ axios
     letra_musica = response.data.message.body.lyrics.lyrics_body;
     res.render("index", {
       success: true,
-      lyrics: letra_musica
+      lyrics: letra_musica,
+      title: req.body.title,
+      artista: req.body.artist
   });
   })
   .catch((error) => {
