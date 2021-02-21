@@ -14,3 +14,6 @@ Tools used:
   <li>Axios</li>
   <li>HTML & CSS</li>
 </ul>
+
+
+Usage of Musixmatch API. 
